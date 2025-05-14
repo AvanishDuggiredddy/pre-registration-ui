@@ -13,7 +13,7 @@ export class AuthService {
     private router: Router,
     private dataStorageService: DataStorageService,
     private userIdle: UserIdleService
-  ) {}
+  ) { }
 
   token: string;
   primaryLang: string = 'eng';
@@ -37,11 +37,11 @@ export class AuthService {
     if (match) return match[2];
   }
 
-  setCaptchaAuthenticate(isSuccess:boolean){
-   this.isCaptchaSuccess = isSuccess;
+  setCaptchaAuthenticate(isSuccess: boolean) {
+    this.isCaptchaSuccess = isSuccess;
   }
-   
-  isCaptchaAuthenticated(){
+
+  isCaptchaAuthenticated() {
     return this.isCaptchaSuccess;
   }
 
@@ -58,6 +58,10 @@ export class AuthService {
   }
 
   onLogout() {
+    // clearInterval(this.timer); // if accessible
+    localStorage.removeItem("otp_sent_time");
+    localStorage.removeItem("user_email_or_phone");
+    localStorage.removeItem("show_captcha");
     localStorage.setItem("loggedIn", "false");
     localStorage.setItem("loggedOut", "true");
     this.removeToken();
