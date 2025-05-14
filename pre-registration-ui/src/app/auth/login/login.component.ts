@@ -206,13 +206,12 @@ export class LoginComponent implements OnInit {
         document.getElementById("minutesSpan").innerText = "0" + (minValue - 1);
       }
     }
-    if (document.getElementById("secondsSpan") &&
+   if (document.getElementById("secondsSpan") &&
       document.getElementById("secondsSpan").innerText) {
-      let newSecVal = --secValue;
       if (secValue === 10 || secValue < 10) {
-        document.getElementById("secondsSpan").innerText = "0" + newSecVal;
+        document.getElementById("secondsSpan").innerText = "0" + --secValue;
       } else {
-        document.getElementById("secondsSpan").innerText = newSecVal + "";
+        document.getElementById("secondsSpan").innerText = --secValue + "";
       }
     }
   };
