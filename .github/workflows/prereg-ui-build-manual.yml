@@ -16,15 +16,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
-        with:
-          node-version: '18.x'
 
-      - name: Fix registry and clean install
-        run: |
-          cd ${{ env.SERVICE_LOCATION }}
-          npm config set registry https://registry.npmjs.org/
-          rm -rf node_modules package-lock.json
-          npm install --ignore-scripts --verbose
+      - name: npm install
+        run: cd ${{ env.SERVICE_LOCATION }} && npm install --ignore-scripts
 
       - name: npm build
         run: cd ${{ env.SERVICE_LOCATION }} && npm run-script build -- --prod --base-href . --output-path=dist
