@@ -72,6 +72,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    localStorage.setItem("langCode", "eng");
     this.showSpinner = true;
     if (this.authService.isAuthenticated()) {
       this.authService.onLogout();
@@ -264,7 +265,6 @@ export class LoginComponent implements OnInit {
         // this.setTimer();
         this.loadLanguagesWithConfig();
         this.isCaptchaEnabled();
-        localStorage.setItem("langCode", this.primaryLangFromConfig);
       },
       (error) => {
         this.showErrorMessage();
